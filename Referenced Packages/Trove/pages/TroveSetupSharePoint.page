@@ -1,0 +1,50 @@
+<apex:page controller="Trove.TroveSetupSharePointController" >
+    <style>
+        .troveEditPage table.detailList th
+        {
+            vertical-align:middle
+        }
+        .troveEditPage table.detailList img
+        {
+            margin-left:5px;
+        }
+    </style>
+
+    <div class="bPageTitle">
+        <div class="ptBody secondaryPalette brandSecondaryBrd">
+        <h1 class="noSecondHeader">Trove</h1>
+        </div>
+    </div>
+    <div>
+        <br/>
+    </div>
+    <apex:pageMessages />
+
+    <apex:form >
+    <div class="editPage troveEditPage">
+    <apex:actionRegion >
+    <apex:pageBlock title="Configuration for Trove" mode="edit"  >
+
+    <apex:pageBlockButtons location="bottom">
+        <apex:commandButton action="{!back}" value="Back" />
+        <apex:commandButton action="{!save}" value="Finish" />
+    </apex:pageBlockButtons>
+    
+    <apex:pageBlockSection title="Configure SharePoint" columns="1" >
+        <apex:pageBlockSectionItem >
+        	<apex:outputPanel layout="block">
+                <apex:outputLabel value="Document Library" />
+        	</apex:outputPanel>
+            <apex:outputPanel layout="block" styleClass="requiredInput">
+                <apex:selectList size="1" value="{!SharePointConfiguration}"> 
+   					<apex:selectOption itemValue="configure" itemLabel="Let Trove configure the SharePoint document library"/>
+   					<apex:selectOption itemValue="donotconfigure" itemLabel="I will configure the SharePoint document library"/>
+ 				</apex:selectList>
+            </apex:outputPanel>
+        </apex:pageBlockSectionItem>    
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:actionRegion>
+  </div>
+  </apex:form>
+</apex:page>

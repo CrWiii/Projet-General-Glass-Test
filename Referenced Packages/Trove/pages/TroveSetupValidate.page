@@ -1,0 +1,44 @@
+<apex:page controller="Trove.TroveSetupValidateController" >
+    <style>
+        .troveEditPage table.detailList th
+        {
+            vertical-align:middle
+        }
+        .troveEditPage table.detailList img
+        {
+            margin-left:5px;
+        }
+    </style>
+
+    <div class="bPageTitle">
+        <div class="ptBody secondaryPalette brandSecondaryBrd">
+        <h1 class="noSecondHeader">Trove</h1>
+        </div>
+    </div>
+    <div>
+        <br/>
+    </div>
+    <apex:pageMessages />
+
+    <apex:form >
+    <div class="editPage troveEditPage">
+    <apex:actionRegion >
+    <apex:pageBlock title="Configuration for Trove" mode="edit"  >
+
+    <apex:pageBlockButtons location="bottom">
+        <apex:commandButton action="{!back}" value="Back" />
+        <apex:commandButton action="{!save}" value="Next" disabled="{!NOT(Validated)}" />
+    </apex:pageBlockButtons>
+    
+    <apex:pageBlockSection title="Validate" columns="1" >
+        <apex:pageBlockSectionItem >
+            <apex:outputPanel layout="block" styleClass="requiredInput">
+                <apex:outputtext label="Validation Result" value="{!ValidationMessage}"  />
+            </apex:outputPanel>
+        </apex:pageBlockSectionItem>    
+    </apex:pageBlockSection>
+   </apex:pageBlock>
+    </apex:actionRegion>
+  </div>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,92 @@
+<apex:page standardStylesheets="false" controller="BARepoController" showHeader="false" applyHtmlTag="false" applyBodyTag="false" renderAs="pdf" action="{!filter}">
+    <html>
+        <head>
+            
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+        <style>
+            @page { size: A4 landscape; margin:0.15in; }
+            body{
+                font-style: 'PT Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+                font-size:11px;
+            }
+            .tabl {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
+                background-color: transparent;
+                border-spacing: 0;
+                border-collapse: collapse;
+                box-sizing: border-box;
+                display: table;
+                box-sizing: border-box;
+            }
+            
+            .tabl>tbody>tr>td, 
+            .tabl>tbody>tr>th, 
+            .tabl>tfoot>tr>td, 
+            .tabl>tfoot>tr>th, 
+            .tabl>thead>tr>td, 
+            .tabl>thead>tr>th {
+            	border: 1px solid #000;
+            }
+            
+            .tabl, th{
+            	text-align: center;
+            }
+            .tabl, th, td {
+                padding-top: 4px;
+                padding-right: 4px;
+                padding-bottom: 4px;
+                padding-left: 4px;
+
+            /*            
+            myTable, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }*/
+        </style>
+        <script>
+
+		</script>
+        </head>
+        <body>
+    <h1>GGI</h1>
+    <h2>Budget to Actual Report By Customer by Salesman with Totals</h2>
+            <apex:form id="frmId">
+                <div class="form-group col-sm-12" style="padding-bottom: 20px">
+    				<div class="col-sm-2">
+                        Owners: {!ownerName}
+                    </div><!--&&{!date2}==''-->
+                    <div class="col-sm-8">
+                        <div class="col-sm-3" style="display: {!IF(date1=='','none','')}">
+                                From : {!date3} To: {!date4}
+                        </div>
+                    </div>
+                </div>
+                <apex:panelGroup id="tableAccount">
+                    <table id="myTable" class="tabl" border="1">
+                        <tr>
+                            <th colspan="2"  style="text-align: center;">Customer</th>
+                                <apex:repeat value="{!myMonthList}" var="Mon">
+                            		<th colspan="2"  style="text-align: center;">{!Mon}</th>
+                                </apex:repeat>
+                            <th colspan="3"  style="text-align: center;">Total</th>
+                        </tr>
+                        <tr>
+                            <apex:repeat value="{!itemDataHeader2}" var="header">
+                            	<th style="text-align: center;">{!header}</th>
+                            </apex:repeat>
+                        </tr>
+                        <apex:repeat value="{!myMapBody}" var="key">
+                            <tr>
+                                <apex:repeat value="{!myMapBody[key]}" var="item">
+                                    <td>{!item}</td>
+                                </apex:repeat>
+                            </tr>
+                        </apex:repeat>
+            	</table>
+			</apex:panelGroup>
+            </apex:form>
+        </body>
+    </html>
+</apex:page>

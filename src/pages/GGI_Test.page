@@ -1,0 +1,61 @@
+<apex:page controller="Budget_Actual_Controller" showHeader="false">
+    <apex:includeScript value="{!URLFOR($Resource.StyleDatatable, 'js/jquery.min.js')}"/>
+    <script type="text/javascript">
+     // Will hold our converted Apex data structures
+    /* var classInstances;
+      Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.Budget_Actual_Controller.getClassInstances}',
+        function(result, event) {
+          // Put the results into a var for pedantries sake
+          classInstances = result;
+          console.log(classInstances);
+          // Assign the first element of the array to a local var
+          var me = classInstances[0];
+          // And now we can use the var in the "normal" JS way
+          var myName = me.Name;
+          console.log(myName);
+        });*/
+    $(document).ready(function(){
+        var Account = '{!Account}';    	
+    	var Budgets = '{!Budget}';
+		var Actuals = '{!Actual}';
+        /*    $.ajax({
+        url: '/echo/json/',
+    	type: 'POST',
+        dataType: 'json',
+    	data: {
+        	json: Account
+    	},
+    	success: function (response) {
+        	var trHTML = '';
+        $.each(response, function (i, item) {
+            trHTML += '<tr><td>' + item.Id + '</td><td>' + item.Name + '</td><td>' + item.A_W_Account_Number__c + '</td></tr>';
+        });
+            //$('#records_table').append(trHTML);
+            document.getElementById("{!$Component.records_table}").append(trHTML);
+    	}
+	});
+*/
+    });
+    /* if (generatedJSON.translateMap[obj.value] != null) {
+            document.getElementById("{!$Component.theform.block.toReplace}").value = generatedJSON.translateMap[obj.value];
+          }
+          else {
+            document.getElementById("{!$Component.theform.block.toReplace}").value = '';
+          }    */
+    //document.getElementById("placerholder").innerHTML=Account.Id+" "+Account.Name;	    
+    //document.getElementById("placeholder").innerHTML=accounts.id+" "+accounts.name;
+    </script>
+<!--<table id="records_table" border='1'>
+    <tr>
+        <th colspan="2">Customer</th>
+        <th colspan="2">January</th>
+    </tr>
+    <tr>
+        <th>Cust #</th>
+        <th>Cust Name</th>
+        <th>Budget</th>
+        <th>Actual</th>
+    </tr>
+</table>-->
+</apex:page>

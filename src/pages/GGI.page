@@ -1,0 +1,32 @@
+<apex:page showHeader="false">
+<apex:includeScript value="{!URLFOR($Resource.StyleDatatable, 'js/jquery.min.js')}"/>
+    <script>
+    $(document).ready(function(){
+    	var jsonData = '[{"rank":"9","content":"Alon","UID":"5"},{"rank":"6","content":"Tala","UID":"6"}]';
+
+$.ajax({
+    //url: '/echo/json/',
+    //type: 'POST',
+    dataType: 'json',
+    data: {
+        json: jsonData
+    },
+    success: function (response) {
+        var trHTML = '';
+        $.each(response, function (i, item) {
+            trHTML += '<tr><td>' + item.rank + '</td><td>' + item.content + '</td><td>' + item.UID + '</td></tr>';
+        });
+        $('#records_table').append(trHTML);
+    }
+});    
+});
+    </script>
+    
+    <table id="records_table" border='1'>
+    <tr>
+        <th>Rank</th>
+        <th>Content</th>
+        <th>UID</th>
+    </tr>
+</table>
+</apex:page>

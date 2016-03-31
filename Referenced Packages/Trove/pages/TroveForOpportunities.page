@@ -1,0 +1,3 @@
+<apex:page name="Trove for Opportunities" title="Trove for Opportunities"  standardController="Opportunity" extensions="Trove.TroveControllerExtensionRev1" >
+		<c:TroveFiles title="For This Opportunity" sharePointFiles="{!SharePointFilesForObject}" extensionClassName="{!ExtensionClassName}" objectId="{!opportunity.Id}" objectName="" documentFolderUrl="{!DocumentFolderUrl}" searchCenterUrl="{!SearchCenterUrl}" isfeedtrackingenabled="{!IsFeedTrackingEnabled}" />
+</apex:page>

@@ -1,0 +1,181 @@
+<apex:page controller="BAReportController" showHeader="false" applyHtmlTag="false" sidebar="false" standardStylesheets="false" applyBodyTag="false">
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>BA Report</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <apex:includeScript value="{!URLFOR($Resource.StyleDatatable, 'js/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tableExport, 'tableExport.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tableExport, 'jquery.base64.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tableExport, 'html2canvas.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tableExport, 'jspdf/libs/sprintf.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tableExport, 'jspdf/jspdf.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tableExport, 'jspdf/libs/base64.js')}"/>
+    <style>
+        @page { 
+        /*size:landscape;*/
+        size: letter;
+        margin:0.15in; 
+        }
+        body{
+            font-style: 'PT Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+            font-size:11.5px;
+        }
+        .cen{
+            /*padding-left: 20px;*/ 
+            /*padding-right: 20px;*/
+        } 
+    </style>
+    <script>
+        $(document).ready(function(){
+        
+            $("#SelectOwners").change(function(){
+               var owid = $('#SelectOwners option:selected').val();
+               if(owid == "All"){
+                       $("#tab tr.forFilter").show();
+                       }else{
+               $("#tab tr.forFilter").each(function(){
+                    if($(this).attr("data-id") != owid) $(this).hide();
+                    else $(this).show();
+                });
+               }
+            })
+
+        
+            var response = {!response};
+        
+        $(response.Owners).each(function() {
+            Ow = this.OwnerId;
+            $(this.Customers).each(function(){
+                  var output = "<tr class='forFilter' data-id="+ Ow +"><td>" 
+                  //var output = "<tr><td>"
+                  + this.CustNumber + '</td><td>'
+                  + this.CustName + '</td><td>'
+                  + this.Month.January.Budget_Amt + '</td><td>'
+                  + this.Month.January.Actual_Amt + '</td><td>'
+                  + this.Month.February.Budget_Amt + '</td><td>'
+                  + this.Month.February.Actual_Amt + '</td><td>'
+                  + this.Month.March.Budget_Amt + '</td><td>'
+                  + this.Month.March.Actual_Amt + '</td><td>'
+                  + this.Month.April.Budget_Amt + '</td><td>'
+                  + this.Month.April.Actual_Amt + '</td><td>'
+                  + this.Month.May.Budget_Amt + '</td><td>'
+                  + this.Month.May.Actual_Amt + '</td><td>'
+                  + this.Month.June.Budget_Amt + '</td><td>'
+                  + this.Month.June.Actual_Amt + '</td><td>'
+                  + this.Month.July.Budget_Amt + '</td><td>'
+                  + this.Month.July.Actual_Amt + '</td><td>'
+                  + this.Month.August.Budget_Amt + '</td><td>'
+                  + this.Month.August.Actual_Amt + '</td><td>'
+                  + this.Month.September.Budget_Amt + '</td><td>'
+                  + this.Month.September.Actual_Amt + '</td><td>'
+                  + this.Month.October.Budget_Amt + '</td><td>'
+                  + this.Month.October.Actual_Amt + '</td><td>'
+                  + this.Month.November.Budget_Amt + '</td><td>'
+                  + this.Month.November.Actual_Amt + '</td><td>'
+                  + this.Month.December.Budget_Amt + '</td><td>'
+                  + this.Month.December.Actual_Amt + '</td><td>'
+                  + this.Month.Totals.Budget_Tot + '</td><td>' 
+                  + this.Month.Totals.Actual_Tot +'</td><td>'
+                  + this.Month.Totals.PorAtt + '</td></tr>';
+                  $('#tab').append(output);
+            });
+        });
+    
+        $(response.Owners).each(function() {
+            var output = "<option value="+ this.OwnerId +">" + this.OnwerName +"</option>";
+            $('#SelectOwners').append(output);
+        });
+        
+        $('#ExportToPDF').bind('click', function (e) {
+/*        $(".lvl1").prepend("|");
+        $(".lvl2").prepend("|  ");
+        $(".lvl3").prepend("|    ");
+        $(".lvl4").prepend("|       ");*/
+        $('#tab').tableExport({ 
+            type: 'pdf', 
+            escape: 'false', 
+            htmlContent:'false',
+            //pdfFontSize:'7',
+        pdfLeftMargin:5
+        });
+/*        $(".lvl1").text().substr(1);
+        $(".lvl2").text().substr(3);
+        $(".lvl3").text().substr(5);
+        $(".lvl4").text().substr(8);*/
+        }); 
+        
+    });
+</script>
+ 
+</head>
+<body>
+
+<div class="cen">
+    <h1>GGI</h1> 
+    <h2>Budget to Actual Report By Customer by Salesman with Totals</h2>
+    <h3>
+    <div class="form-group col-sm-4" style="padding-bottom: 20px">
+    <div class="col-sm-6">
+    <select id="SelectOwners" class="form-control col-sm-3">
+        <option value="All" selected="selected">AllOwner</option>
+    </select></div>
+    <div class="col-sm-2"><button id="ExportToPDF" type="button" class="btn btn-default btn-sm">Export to PDF</button></div>
+    </div>
+
+    </h3>
+<table id="tab" class="table table-bordered">
+    <tr>
+        <th colspan="2"  style="text-align: center;">Customer</th>
+        <th colspan="2"  style="text-align: center;">January</th>
+        <th colspan="2"  style="text-align: center;">February</th>
+        <th colspan="2"  style="text-align: center;">March</th>
+        <th colspan="2"  style="text-align: center;">April</th>
+        <th colspan="2"  style="text-align: center;">May</th>
+        <th colspan="2"  style="text-align: center;">June</th>
+        <th colspan="2"  style="text-align: center;">July</th>
+        <th colspan="2"  style="text-align: center;">August</th>
+        <th colspan="2"  style="text-align: center;">September</th>
+        <th colspan="2"  style="text-align: center;">October</th>
+        <th colspan="2"  style="text-align: center;">November</th>
+        <th colspan="2"  style="text-align: center;">December</th>
+        <th colspan="3"  style="text-align: center;">Total</th>
+      </tr>
+      <tr>
+        <th>#</th>
+        <th> Name</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>Budget</th>
+        <th>Actual</th>
+        <th>%Att</th>
+      </tr>   
+    </table>
+</div>
+</body>
+</html>
+ 
+</apex:page>

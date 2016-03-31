@@ -1,0 +1,3 @@
+<apex:page name="Trove for Accounts" title="Trove for Accounts" standardController="Account" extensions="Trove.TroveControllerExtensionRev1" >
+	<c:TroveFiles title="For This Account" sharePointFiles="{!SharePointFilesForObject}" extensionClassName="{!ExtensionClassName}" objectId="{!account.Id}" objectName="" documentFolderUrl="{!DocumentFolderUrl}" searchCenterUrl="{!SearchCenterUrl}" isfeedtrackingenabled="{!IsFeedTrackingEnabled}" />
+</apex:page>

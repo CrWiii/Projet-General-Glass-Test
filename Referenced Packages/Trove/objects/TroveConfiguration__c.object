@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Configuration settings for Trove.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Client_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the client id that you created using appregnew.aspx.  See the installation guide at https://www.threewill.com/trove for more details.</inlineHelpText>
+        <label>Client Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Identity_Type__c</fullName>
+        <defaultValue>&apos;Application Principal&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Valid options include Application Principal and Named Credential.</inlineHelpText>
+        <label>Identity Type</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NamedCredential__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the name of the named credential at is configured for Trove.  If your named credential begins with a namespace, or if your named credentials begins with &quot;.__&quot;, do not include that part of the name here.</inlineHelpText>
+        <label>Named Credential</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Office_App_installed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this box if you have installed Trove from the Office store.</inlineHelpText>
+        <label>Office App installed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Search_Center_Url__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Use field to specify a search center in SharePoint for use by Salesforce users.  This field is optional.  Example:  https://contoso.sharepoint.com/sites/salesforce/search/results.aspx?k=%2A</inlineHelpText>
+        <label>Search Center Url</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SharePointDocumentLibraryPath__c</fullName>
+        <defaultValue>&apos;salesforce&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the path of the document library which will be used to store Salesforce documents in SharePoint.  You can find the path name of the document library by navigating to the document library in SharePoint and viewing the URL path.  Do not encode.</inlineHelpText>
+        <label>SharePoint Document Library Path</label>
+        <length>10</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SharePointDocumentLibraryTitle__c</fullName>
+        <defaultValue>&apos;salesforce&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the name of the document library which will be used to store Salesforce documents in SharePoint. You can find the name of the document library by navigating to the Library Settings in SharePoint and selecting &quot;List name, description and navigation&quot;.</inlineHelpText>
+        <label>SharePoint Document Library Title</label>
+        <length>10</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SharePointServerRelativeSiteUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the server relative Url for the SharePoint site that will host Salesforce documents.  For example, if your site is located at https://contoso.sharepoint.com/sites/salesforce, then you would enter /sites/salesforce in this field.</inlineHelpText>
+        <label>SharePoint Server Relative Site Url</label>
+        <length>20</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SharePointServerUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the url for the server in SharePoint that will host your Salesforce document libraries.  If your site is located at https://contoso.sharepoint.com/sites/salesforce, then you will enter https://contoso.sharepoint.com into this setting.</inlineHelpText>
+        <label>SharePoint Server Url</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Trove Configuration</label>
+</CustomObject>
